@@ -1,6 +1,6 @@
 # Guardian
 
-Governance Infrastructure for Autonomous Agents
+Governance Infrastructure for AI Agents
 
 Agents can act.  
 Guardian decides if they should.
@@ -119,7 +119,32 @@ Example:
 
 ## Architecture
 
-Guardian acts as the governance control plane for autonomous systems.
+### System Flow
+
+```
+LLM
+│
+▼
+Agent
+│
+▼
+Guardian
+│
+├── Policy Engine
+├── Decision Engine
+├── Permission Model
+│
+▼
+Decision (ALLOW / DENY / ESCALATE)
+│
+▼
+Evidence Ledger
+│
+▼
+Execution
+```
+
+Guardian acts as the governance control plane between autonomous agents and execution environments.
 
 ```
 Intent
