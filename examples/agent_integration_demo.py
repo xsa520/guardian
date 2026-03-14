@@ -1,24 +1,23 @@
-"""Agent integration demo: three intents → send_email ALLOW, delete_database DENY, transfer_funds ESCALATE."""
+"""Agent integration demo: three intents — send_email ALLOW, delete_database DENY, transfer_funds ESCALATE."""
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from core.decision_engine import DecisionEngine
-from core.intent_schema import Intent
+from guardian import Guardian
 
 
 def main() -> None:
-    engine = DecisionEngine()
+    g = Guardian()
 
     intents = [
-        Intent(actor="agent_1", action="send_email", target="customer"),
-        Intent(actor="agent_1", action="delete_database", target="main_db"),
-        Intent(actor="agent_finance", action="transfer_funds", target="account_1"),
+        ("agent_1", "send_email", "customer"),
+        ("agent_1", "delete_database", "main_db"),
+        ("agent_finance", "transfer_funds", "account_1"),
     ]
-    for intent in intents:
-        decision = engine.decide(intent)
-        print(f"Intent: {intent.action} -> {decision}")
+    for actor, action, target in intents:
+        decision = g.decide(actor=actor, action=action, target=target)
+        print(f"Intent: {action} -> {decision}")
 
 
 if __name__ == "__main__":

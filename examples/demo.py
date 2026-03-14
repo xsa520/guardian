@@ -1,19 +1,20 @@
-"""Demo: create an Intent, run DecisionEngine, print Guardian Decision."""
+"""Demo: test three intents with Guardian — send_email, delete_database, transfer_funds."""
 import sys
 from pathlib import Path
 
-# Ensure project root is on path when running: python examples/demo.py
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from core.intent_schema import Intent
-from core.decision_engine import DecisionEngine
+from guardian import Guardian
 
 
 def main() -> None:
-    intent = Intent(actor="demo_agent", action="send_email", target="config.yaml")
-    engine = DecisionEngine()
-    decision = engine.decide(intent)
-    print(f"Guardian Decision: {decision}")
+    g = Guardian()
+
+    for action in ["send_email", "delete_database", "transfer_funds"]:
+        actor = "agent_finance" if action == "transfer_funds" else "agent_1"
+        target = "account_1" if action == "transfer_funds" else "customer"
+        decision = g.decide(actor=actor, action=action, target=target)
+        print(f"{action} -> {decision}")
 
 
 if __name__ == "__main__":
