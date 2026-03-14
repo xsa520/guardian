@@ -39,6 +39,25 @@ Guardian ensures autonomous systems remain:
 * replayable
 * safe to operate in production
 
+## Architecture
+
+```mermaid
+flowchart TD
+
+A[AI Agent] --> B[Guardian]
+
+B --> C[Policy Engine]
+B --> D[Decision Engine]
+
+C --> D
+
+D --> E[Execution Environment]
+
+E --> F[Evidence Ledger]
+
+F --> G[Replay / Audit]
+```
+
 ## The Problem
 
 Modern AI agents can:
