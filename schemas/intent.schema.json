@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Intent",
+  "description": "Schema for agent intent (actor, action, target)",
+  "type": "object",
+  "properties": {
+    "actor": { "type": "string", "description": "Identifier of the acting agent" },
+    "action": { "type": "string", "description": "Action to perform" },
+    "target": { "type": "string", "description": "Target of the action" },
+    "metadata": { "type": "object", "description": "Optional additional data" }
+  },
+  "required": ["actor", "action", "target"]
+}

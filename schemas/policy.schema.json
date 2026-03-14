@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PolicyRules",
+  "description": "Array of policy rules with actor, action, target, effect",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "actor": { "type": "string", "description": "Actor identifier or * for wildcard" },
+      "action": { "type": "string", "description": "Action name or * for wildcard" },
+      "target": { "type": "string", "description": "Target identifier or * for wildcard" },
+      "effect": {
+        "type": "string",
+        "enum": ["ALLOW", "DENY", "ESCALATE"],
+        "description": "Outcome when rule matches"
+      }
+    },
+    "required": ["actor", "action", "target", "effect"]
+  }
+}

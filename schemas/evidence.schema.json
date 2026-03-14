@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EvidenceRecord",
+  "description": "Single ledger entry with hash chain fields",
+  "type": "object",
+  "properties": {
+    "timestamp": { "type": "string", "format": "date-time", "description": "UTC ISO timestamp" },
+    "actor": { "type": "string", "description": "Identifier of the acting agent" },
+    "action": { "type": "string", "description": "Action performed" },
+    "target": { "type": "string", "description": "Target of the action" },
+    "decision": { "type": "string", "enum": ["ALLOW", "DENY"], "description": "Guardian decision" },
+    "hash": { "type": "string", "description": "SHA256 hash of this record payload" },
+    "previous_hash": { "type": "string", "description": "Hash of the previous ledger entry" },
+    "metadata": { "type": "object", "description": "Optional additional data" }
+  },
+  "required": ["timestamp", "actor", "action", "target", "decision", "hash", "previous_hash"]
+}
