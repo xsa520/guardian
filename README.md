@@ -217,9 +217,8 @@ Guardian exists to make autonomous systems:
 
 ## Status
 
-Early infrastructure project.  
-Architecture-first.  
-Focused on deterministic governance for autonomous agents.
+Experimental infrastructure project.
+Focused on deterministic governance for autonomous systems.
 
 ## License
 
