@@ -1,17 +1,43 @@
 # Guardian
 
-Governance Infrastructure for AI Agents
+Governance infrastructure for autonomous AI agents.
 
-Agents can act.  
-Guardian decides if they should.
-
-AI agents can already execute code, call APIs, modify systems, and trigger real-world actions.
+AI agents can already execute code, access systems, call APIs, and trigger real-world actions.
 
 But most agent systems cannot answer one simple question:
 
 **Who approved the action?**
 
-Guardian introduces a deterministic governance layer between AI agents and execution.
+Guardian introduces a deterministic governance layer between AI agents and execution environments.
+
+Instead of:
+
+Agent → Tool → Execution
+
+Guardian inserts a control plane:
+
+```
+LLM
+  ↓
+Agent
+  ↓
+Guardian
+  ↓
+Execution
+  ↓
+Evidence
+```
+
+Every action becomes:
+
+Intent → Policy → Decision → Evidence → Execution
+
+Guardian ensures autonomous systems remain:
+
+* controllable
+* auditable
+* replayable
+* safe to operate in production
 
 ## The Problem
 
