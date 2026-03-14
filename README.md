@@ -1,20 +1,39 @@
 # Guardian
 
-Governance infrastructure for autonomous AI agents.
+Governance infrastructure for autonomous AI agents
 
-AI agents can already execute code, access systems, call APIs, and trigger real-world actions.
+AI agents can now:
 
-But most agent systems cannot answer one simple question:
+- write code
+- run shell commands
+- access databases
+- call cloud APIs
+- trigger financial or operational workflows
 
-**Who approved the action?**
+But most agent systems still look like this:
+
+```
+Agent → Tool → Execution
+```
+
+This architecture is powerful — but dangerously incomplete.
+
+When something goes wrong, most systems cannot answer:
+
+- Who approved the action?
+- What policy allowed it?
+- Can the decision be replayed?
+- Is there verifiable evidence?
 
 Guardian introduces a deterministic governance layer between AI agents and execution environments.
 
-Instead of:
+## The Missing Layer
 
-Agent → Tool → Execution
+Modern autonomous systems need more than capability.
 
-Guardian inserts a control plane:
+They need governance.
+
+Guardian inserts a control plane between agents and execution:
 
 ```
 LLM
@@ -30,14 +49,16 @@ Evidence
 
 Every action becomes:
 
+```
 Intent → Policy → Decision → Evidence → Execution
+```
 
-Guardian ensures autonomous systems remain:
+This makes agent behavior:
 
-* controllable
-* auditable
-* replayable
-* safe to operate in production
+- controllable
+- auditable
+- replayable
+- safe to operate in production
 
 ## Architecture
 
@@ -58,86 +79,33 @@ E --> F[Evidence Ledger]
 F --> G[Replay / Audit]
 ```
 
-## The Problem
+Guardian acts as a governance control plane.
 
-Modern AI agents can:
+Before any action executes:
 
-- write code
-- execute commands
-- access databases
-- call cloud APIs
-- trigger financial or operational workflows
+1. The agent declares intent
+2. Guardian evaluates policy
+3. A deterministic decision is produced
+4. Evidence is written to a ledger
+5. Only then does execution happen
 
-But most systems still look like this:
+## Core Principles
 
-```
-Agent → Tool → Execution
-```
+Guardian is built around five ideas.
 
-This creates serious gaps:
+**Intent** — Agents must explicitly declare the action they intend to perform.
 
-- no permission layer
-- no policy enforcement
-- no decision audit
-- no accountability
+**Policy as Code** — Behavior is controlled by declarative policies rather than hidden logic.
 
-Examples:
+**Deterministic Decisions** — Guardian returns one of three outcomes: `ALLOW`, `DENY`, `ESCALATE`.
 
-- agent deletes production database
-- agent deploys unsafe code
-- agent leaks secrets
-- agent triggers unintended actions
+**Evidence Ledger** — Every decision is recorded as verifiable evidence.
 
-## The Missing Layer
+**Replay Verification** — Decisions can be replayed and validated against policy.
 
-Production systems need more than agent capability.
+## Policy Example
 
-They need:
-
-- permission
-- policy
-- deterministic decision making
-- evidence
-- replay verification
-
-Guardian adds that missing layer:
-
-```
-LLM
-  ↓
-Agent
-  ↓
-Guardian
-  ↓
-Execution
-  ↓
-Evidence
-```
-
-## What Guardian Does
-
-Guardian enforces five core ideas:
-
-1. **Intent**  
-   Agents must declare what they want to do.
-
-2. **Policy as Code**  
-   Behavior is controlled by declared rules, not hidden logic.
-
-3. **Deterministic Decisions**  
-   Guardian returns ALLOW, DENY, or ESCALATE.
-
-4. **Evidence Ledger**  
-   Every decision is recorded as verifiable evidence.
-
-5. **Replay Verification**  
-   Decisions can be replayed and validated against policy.
-
-## Policy as Code
-
-Guardian policies are declared as rules instead of hardcoded branching logic.
-
-Example:
+Guardian policies are simple rule declarations.
 
 ```json
 [
@@ -162,56 +130,31 @@ Example:
 ]
 ```
 
-## Architecture
+## Why This Matters
 
-### System Flow
+AI capabilities are increasing rapidly.
 
-```
-LLM
-│
-▼
-Agent
-│
-▼
-Guardian
-│
-├── Policy Engine
-├── Decision Engine
-├── Permission Model
-│
-▼
-Decision (ALLOW / DENY / ESCALATE)
-│
-▼
-Evidence Ledger
-│
-▼
-Execution
-```
+Agents can now:
 
-Guardian acts as the governance control plane between autonomous agents and execution environments.
+- modify infrastructure
+- deploy code
+- move data
+- trigger financial transactions
 
-```
-Intent
-  ↓
-Policy
-  ↓
-Decision
-  ↓
-Evidence
-  ↓
-Execution
-```
+Without governance, the risk surface grows dramatically.
 
-Internal components:
+Examples of real failure modes:
 
-- Decision Engine
-- Policy Engine
-- Permission Model
-- Evidence Ledger
-- Replay Verifier
+- agent deletes production database
+- agent deploys unsafe code
+- agent leaks secrets
+- agent triggers unintended workflows
+
+Guardian exists to make autonomous systems safer to trust in production.
 
 ## Quickstart
+
+Run the examples:
 
 ```bash
 python examples/demo.py
@@ -219,7 +162,7 @@ python examples/replay_demo.py
 python examples/agent_integration_demo.py
 ```
 
-Expected behaviors:
+Expected behavior:
 
 - `send_email` → ALLOW
 - `delete_database` → DENY
@@ -227,43 +170,27 @@ Expected behaviors:
 
 ## Example Use Cases
 
-**AI Coding Agents**  
-Prevent unsafe code modifications or destructive actions.
+**AI Coding Agents** — Prevent destructive repository changes or unsafe deployments.
 
-**Infrastructure Automation**  
-Control cloud or database operations before execution.
+**Infrastructure Automation** — Control cloud and database operations before execution.
 
-**Financial Agents**  
-Require escalation for sensitive actions like fund transfers.
+**Financial Agents** — Require escalation for sensitive actions like fund transfers.
 
-**Enterprise AI Workflows**  
-Provide evidence and replayability for AI actions.
-
-## Why This Matters
-
-AI capability is increasing rapidly.
-
-But capability without governance is dangerous.
-
-Guardian exists to make autonomous systems:
-
-- controllable
-- auditable
-- replayable
-- safer to trust in production
-
-## Roadmap
-
-- **Stage 1** — Core governance engine
-- **Stage 2** — Evidence ledger and replay verification
-- **Stage 3** — Policy DSL and permission model
-- **Stage 4** — Developer integrations
-- **Stage 5** — Hosted governance workflows
+**Enterprise AI Workflows** — Provide evidence and replayability for AI actions.
 
 ## Status
 
 Experimental infrastructure project.
+
 Focused on deterministic governance for autonomous systems.
+
+## Roadmap
+
+- Stage 1 — Core governance engine
+- Stage 2 — Evidence ledger and replay verification
+- Stage 3 — Policy DSL and permission model
+- Stage 4 — Developer integrations
+- Stage 5 — Hosted governance workflows
 
 ## License
 
