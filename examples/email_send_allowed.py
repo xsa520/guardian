@@ -1,0 +1,27 @@
+"""Scenario: send_email for low-risk internal update is allowed by Guardian."""
+import sys
+from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+
+from guardian import Guardian
+
+
+def main() -> None:
+    guardian = Guardian()
+
+    intent = {
+        "actor": "notification_agent",
+        "action": "send_email",
+        "target": "internal_list",
+        "metadata": {"classification": "internal", "subject": "Status update"},
+    }
+
+    record = guardian.decide(intent)
+    print("Intent:", intent)
+    print("Decision record:", record)
+
+
+if __name__ == "__main__":
+    main()
+

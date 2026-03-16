@@ -13,8 +13,8 @@ def main() -> None:
     for action in ["send_email", "delete_database", "transfer_funds"]:
         actor = "agent_finance" if action == "transfer_funds" else "agent_1"
         target = "account_1" if action == "transfer_funds" else "customer"
-        decision = g.decide(actor=actor, action=action, target=target)
-        print(f"{action} -> {decision}")
+        record = g.decide(actor=actor, action=action, target=target)
+        print(f"{action} -> {record['decision']}")
 
 
 if __name__ == "__main__":

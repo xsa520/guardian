@@ -1,6 +1,7 @@
 # Guardian
 
-A verifiable governance layer for autonomous AI agents.
+A verifiable governance layer for autonomous AI agents.  
+**Guardian is framework-agnostic governance infrastructure.**
 
 AI agents can now execute real-world actions —  
 writing code, running infrastructure, accessing databases,
@@ -38,17 +39,28 @@ intent = {
 
 decision = guardian.decide(intent)
 
-print(decision)
-
-# Possible outputs:
-# ALLOW
-# DENY
-# ESCALATE
+print(decision["decision"])  # ALLOW | DENY | ESCALATE
 ```
 
 Guardian evaluates the intent against policy rules before execution.
 
 Every decision is recorded as verifiable evidence and can be replayed for audit.
+
+### Stack at a glance
+
+```
+┌─────────────────────────────┐
+│ Application                 │
+├─────────────────────────────┤
+│ Agent Framework             │  (LangChain / CrewAI / AutoGen / custom)
+├─────────────────────────────┤
+│ Guardian Governance Layer   │  ← policy, decision, evidence
+├─────────────────────────────┤
+│ Execution Environment       │
+├─────────────────────────────┤
+│ Evidence Ledger             │  ← append-only, hash chain, replay
+└─────────────────────────────┘
+```
 
 ## The Missing Layer
 
@@ -167,7 +179,7 @@ Provide evidence and replayability for AI actions.
 
 ## Framework Integration
 
-Guardian is framework-agnostic.
+Guardian is framework-agnostic governance infrastructure.
 
 It can sit between any AI agent system and its execution layer, including:
 

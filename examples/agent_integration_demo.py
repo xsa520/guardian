@@ -16,8 +16,8 @@ def main() -> None:
         ("agent_finance", "transfer_funds", "account_1"),
     ]
     for actor, action, target in intents:
-        decision = g.decide(actor=actor, action=action, target=target)
-        print(f"Intent: {action} -> {decision}")
+        record = g.decide(actor=actor, action=action, target=target)
+        print(f"Intent: {action} -> {record['decision']}")
 
 
 if __name__ == "__main__":

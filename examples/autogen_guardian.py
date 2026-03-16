@@ -8,7 +8,7 @@ intent = {
     "target": "prod_cluster",
 }
 
-decision = guardian.decide(intent)
-
-print("Guardian decision:", decision)
+if __name__ == "__main__":
+    record = guardian.decide(intent)
+    print("Guardian decision:", record["decision"])
 

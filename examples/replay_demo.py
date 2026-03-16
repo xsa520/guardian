@@ -10,10 +10,10 @@ from guardian import Guardian
 def main() -> None:
     g = Guardian(ledger_path="ledger/evidence_log.jsonl")
 
-    g.decide("agent_1", "send_email", "customer")
+    g.decide(actor="agent_1", action="send_email", target="customer")
     print("Decision recorded: ALLOW")
 
-    g.decide("agent_1", "delete_database", "main_db")
+    g.decide(actor="agent_1", action="delete_database", target="main_db")
     print("Decision recorded: DENY")
 
     print("Replaying ledger...")
