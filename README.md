@@ -26,6 +26,87 @@ The governance pipeline is:
 
 ---
 
+## Agent Governance Architecture
+
+Modern AI agent systems are beginning to require **governance layers** that sit between agent reasoning and real-world execution.
+
+Different projects are currently exploring different parts of this stack.
+
+The diagram below summarizes the emerging architecture layers:
+
+**Agent Governance Architecture Map**
+
+```
+             ┌──────────────────────────────┐
+             │         Application           │
+             │  user workflows / automation  │
+             └──────────────────────────────┘
+                            │
+                            ▼
+             ┌──────────────────────────────┐
+             │       Agent Framework         │
+             │  LangChain / AutoGen / etc.   │
+             │ planning, reasoning, tools    │
+             └──────────────────────────────┘
+                            │
+                            ▼
+    ┌────────────────────────────────────────────┐
+    │     Governance Control Plane (Guardian)     │
+    │                                              │
+    │  Intent → Policy → Decision → Evidence       │
+    │                                              │
+    │  deterministic policy evaluation             │
+    │  decision artifacts                          │
+    │  tamper-evident decision ledger              │
+    │  replay verification                         │
+    └────────────────────────────────────────────┘
+                            │
+                            ▼
+       ┌────────────────────────────────────┐
+       │       Runtime Enforcement Layer     │
+       │                                     │
+       │  policy enforcement                 │
+       │  runtime gating / blocking          │
+       │  audit logging                      │
+       │                                     │
+       │  (e.g. agent-governance-toolkit)    │
+       └────────────────────────────────────┘
+                            │
+                            ▼
+    ┌────────────────────────────────────────────┐
+    │       Execution Environment / Tools         │
+    │                                             │
+    │ APIs, databases, infrastructure, payments   │
+    └────────────────────────────────────────────┘
+                            │
+                            ▼
+       ┌────────────────────────────────────┐
+       │  Cryptographic Execution Receipts  │
+       │                                     │
+       │  signed execution proofs            │
+       │  execution attestation              │
+       │                                     │
+       │  (e.g. AutoGen governance proposal) │
+       └────────────────────────────────────┘
+```
+
+## Governance Models
+
+Different projects in the ecosystem are currently exploring different governance questions:
+
+| Layer | Question |
+|-------|----------|
+| Agent Framework | What does the agent want to do? |
+| Governance Control Plane | Why was a decision allowed? |
+| Runtime Enforcement | Can this action execute right now? |
+| Execution Receipts | What actually happened during execution? |
+
+Guardian focuses on the **decision governance layer**, treating governance decisions as **first-class verifiable artifacts** that can be audited and replayed independently of runtime behavior.
+
+This repository explores that architectural model.
+
+---
+
 ## 3. Decision Provenance
 
 Recording decisions separately from execution can improve **auditability** and **replayability**. The decision artifact captures *what was decided* at policy-evaluation time; the execution receipt captures *what actually happened* at runtime. By keeping both, systems can detect divergence between policy outcomes and runtime behavior, and can replay or verify decisions without depending solely on execution logs.
