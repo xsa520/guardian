@@ -1,38 +1,32 @@
 # Guardian
 
-Guardian is an **architectural exploration** of treating governance decisions as first-class verifiable artifacts. This repository explores a model where the decision itself is recorded as an independent artifact before execution, improving auditability and enabling verification independent of runtime behavior.
+Guardian is a **decision-governance control plane** for autonomous systems: it treats governance decisions as **first-class verifiable artifacts** that exist *before* execution and can be audited and replayed independently of runtime behavior.
 
 ---
 
-## 1. Project Overview
+## 1. Why Guardian
 
-Guardian explores the idea that **governance decisions can be treated as verifiable artifacts**, independent from runtime execution. Many governance systems rely primarily on execution receipts as evidence. This repository explores a different model: the **decision artifact exists before execution** and can therefore be verified independently from runtime behavior.
+Modern AI agent systems need a **governance layer** between agent reasoning and real-world execution. Many systems rely mainly on **execution receipts** as evidence. Guardian explores a different model: the **decision artifact** is recorded *before* execution, so you can verify *what was allowed* independently of *what actually ran*. That improves auditability, replayability, and the ability to detect divergence between policy and runtime.
 
 ---
 
-## 2. Architecture Model
+## 2. Core Model
 
-The governance pipeline is:
-
-**Intent → Policy Evaluation → Decision Artifact → Execution → Execution Receipt**
+**Intent → Policy → Decision Artifact → Execution → Receipt**
 
 | Stage | Role |
 |-------|------|
-| **Intent** | An action requested by an actor or agent. |
-| **Policy Evaluation** | Governance rules evaluate whether the action should be allowed. |
+| **Intent** | Action requested by an actor or agent. |
+| **Policy** | Governance rules evaluate whether the action is allowed (ALLOW / DENY / ESCALATE). |
 | **Decision Artifact** | The evaluated decision is recorded as a verifiable artifact *before* execution. |
-| **Execution** | The runtime system performs the action. |
-| **Execution Receipt** | Runtime evidence that execution occurred. |
+| **Execution** | The runtime performs the action (outside Guardian). |
+| **Receipt** | Runtime evidence that execution occurred (outside Guardian). |
+
+Guardian is responsible for **intent normalization**, **deterministic policy evaluation**, **decision artifact generation**, **append-only evidence ledger**, **replay verification**, and **decision/receipt correlation**. Guardian is **not** responsible for agent planning, tool orchestration, runtime sandboxing, actual execution, or cryptographic execution attestation.
 
 ---
 
-## Agent Governance Architecture
-
-Modern AI agent systems are beginning to require **governance layers** that sit between agent reasoning and real-world execution.
-
-Different projects are currently exploring different parts of this stack.
-
-The diagram below summarizes the emerging architecture layers:
+## 3. Where Guardian Sits
 
 **Agent Governance Architecture Map**
 
@@ -54,7 +48,6 @@ The diagram below summarizes the emerging architecture layers:
     │     Governance Control Plane (Guardian)     │
     │                                              │
     │  Intent → Policy → Decision → Evidence       │
-    │                                              │
     │  deterministic policy evaluation             │
     │  decision artifacts                          │
     │  tamper-evident decision ledger              │
@@ -64,35 +57,21 @@ The diagram below summarizes the emerging architecture layers:
                             ▼
        ┌────────────────────────────────────┐
        │       Runtime Enforcement Layer     │
-       │                                     │
-       │  policy enforcement                 │
-       │  runtime gating / blocking          │
-       │  audit logging                      │
-       │                                     │
-       │  (e.g. agent-governance-toolkit)    │
+       │  policy enforcement, gating, audit │
        └────────────────────────────────────┘
                             │
                             ▼
     ┌────────────────────────────────────────────┐
     │       Execution Environment / Tools         │
-    │                                             │
-    │ APIs, databases, infrastructure, payments   │
     └────────────────────────────────────────────┘
                             │
                             ▼
        ┌────────────────────────────────────┐
        │  Cryptographic Execution Receipts  │
-       │                                     │
-       │  signed execution proofs            │
-       │  execution attestation              │
-       │                                     │
-       │  (e.g. AutoGen governance proposal) │
        └────────────────────────────────────┘
 ```
 
-## Governance Models
-
-Different projects in the ecosystem are currently exploring different governance questions:
+**Governance models**
 
 | Layer | Question |
 |-------|----------|
@@ -101,41 +80,85 @@ Different projects in the ecosystem are currently exploring different governance
 | Runtime Enforcement | Can this action execute right now? |
 | Execution Receipts | What actually happened during execution? |
 
-Guardian focuses on the **decision governance layer**, treating governance decisions as **first-class verifiable artifacts** that can be audited and replayed independently of runtime behavior.
-
-This repository explores that architectural model.
+Guardian focuses on the **decision governance layer**.
 
 ---
 
-## 3. Decision Provenance
+## 4. Why Decision Provenance Matters
 
-Recording decisions separately from execution can improve **auditability** and **replayability**. The decision artifact captures *what was decided* at policy-evaluation time; the execution receipt captures *what actually happened* at runtime. By keeping both, systems can detect divergence between policy outcomes and runtime behavior, and can replay or verify decisions without depending solely on execution logs.
-
----
-
-## 4. Governance Model Comparison
-
-| Layer | Execution-Receipt Governance | Decision-Artifact Model |
-|-------|-----------------------------|--------------------------|
-| Intent | yes | yes |
-| Policy Evaluation | yes | yes |
-| Decision Artifact | embedded | **explicit artifact** |
-| Execution | yes | yes |
-| Receipt | **primary evidence** | secondary evidence |
-
-In execution-receipt-centric models, the receipt is the main evidence. In the decision-artifact model, the explicit decision record is the primary governance artifact; the receipt serves as secondary evidence of what was executed.
+Recording decisions separately from execution improves **auditability** and **replayability**. The decision artifact captures *what was decided* at policy-evaluation time; the execution receipt captures *what actually happened* at runtime. By keeping both, systems can detect divergence between policy and runtime and can replay or verify decisions without depending solely on execution logs. See [docs/decision_provenance.md](docs/decision_provenance.md).
 
 ---
 
-## 5. Interoperability Discussion
+## 5. Example Flow
 
-If multiple governance frameworks emit **compatible decision artifacts**, interoperability between systems may become possible. Shared schema and semantics for decision records could allow different runtimes and policy engines to exchange, verify, or replay each other’s decisions. This repository only explores the idea; it does not define a standard.
+1. Caller submits **intent** (actor, action, target).
+2. Guardian evaluates **policy** (ALLOW / DENY / ESCALATE; default DENY; wildcards).
+3. Guardian produces a **DecisionRecord** (with `decision_hash`, timestamp) and appends it to the **ledger**.
+4. Caller (or runtime enforcement) decides whether to execute; execution and **receipt** are outside Guardian.
+5. Optional: **Replay** verifier re-evaluates ledger entries; **receipt correlation** verifier compares receipts to decision records.
+
+See [docs/example_decision_flow.md](docs/example_decision_flow.md).
 
 ---
 
-## Repository Contents
+## 6. Repository Structure
 
-- **docs/** — Architecture and concept documentation.
-- **schemas/** — JSON schema for a decision artifact (`decision_record.schema.json`).
+```
+guardian/
+  guardian/           # Single canonical package
+    models/           # Intent, PolicyRule, DecisionRecord, ExecutionReceipt
+    policy/           # Policy loader and deterministic engine
+    decision/         # Decision engine (artifact before execution)
+    ledger/           # Append-only hash-chained evidence ledger
+    verification/     # Replay verifier, receipt correlation verifier
+    integrations/     # Integration points (stubs)
+    api.py            # Guardian facade
+    config.py         # Configuration
+  docs/               # Architecture and concepts
+  schemas/            # JSON schemas
+  examples/           # Example scripts
+  tests/              # Tests
+```
 
-See [docs/architecture.md](docs/architecture.md) for the full pipeline and [schemas/decision_record.schema.json](schemas/decision_record.schema.json) for the schema.
+---
+
+## 7. Schema
+
+| Schema | Description |
+|--------|-------------|
+| [intent.schema.json](schemas/intent.schema.json) | Intent (actor, action, target, optional metadata). |
+| [policy.schema.json](schemas/policy.schema.json) | Policy rules (actor, action, target, effect). |
+| [decision_record.schema.json](schemas/decision_record.schema.json) | Decision artifact. |
+| [execution_receipt.schema.json](schemas/execution_receipt.schema.json) | Execution receipt (secondary evidence). |
+| [evidence_log_entry.schema.json](schemas/evidence_log_entry.schema.json) | Single ledger entry with hash chain. |
+
+---
+
+## 8. Interoperability
+
+If multiple governance frameworks emit **compatible decision artifacts**, interoperability may become possible: shared schema and semantics allow exchange, verification, and replay across systems. **Guardian does not attempt to define a governance standard.** This repository explores the idea only. See [docs/interoperability.md](docs/interoperability.md).
+
+---
+
+## 9. Boundaries
+
+Guardian is a **decision-governance control plane only**. It does not do agent planning, tool orchestration, runtime sandboxing, actual execution, or cryptographic execution attestation. See [docs/boundaries.md](docs/boundaries.md).
+
+---
+
+## Quick Start
+
+```bash
+# From repo root (install in dev mode or set PYTHONPATH)
+pip install -e .
+# Or: set PYTHONPATH to repo root
+
+python examples/email_send_allowed.py
+python examples/replay_demo.py
+pytest tests/
+```
+
+## License
+
+See [LICENSE](LICENSE).

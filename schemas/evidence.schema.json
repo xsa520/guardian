@@ -8,7 +8,8 @@
     "actor": { "type": "string", "description": "Identifier of the acting agent" },
     "action": { "type": "string", "description": "Action performed" },
     "target": { "type": "string", "description": "Target of the action" },
-    "decision": { "type": "string", "enum": ["ALLOW", "DENY"], "description": "Guardian decision" },
+    "decision": { "type": "string", "enum": ["ALLOW", "DENY", "ESCALATE"], "description": "Guardian decision" },
+    "decision_hash": { "type": "string", "description": "Hash of the decision artifact (optional for backward compatibility)." },
     "hash": { "type": "string", "description": "SHA256 hash of this record payload" },
     "previous_hash": { "type": "string", "description": "Hash of the previous ledger entry" },
     "metadata": { "type": "object", "description": "Optional additional data" }

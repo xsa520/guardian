@@ -4,7 +4,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from guardian import Guardian
+from guardian import Guardian  # noqa: E402
 
 
 def main() -> None:

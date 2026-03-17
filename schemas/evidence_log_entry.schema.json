@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/guardian/evidence_log_entry.schema.json",
+  "title": "EvidenceLogEntry",
+  "description": "Single append-only ledger entry with decision artifact and hash chain.",
+  "type": "object",
+  "required": [
+    "timestamp",
+    "actor",
+    "action",
+    "target",
+    "decision",
+    "decision_hash",
+    "previous_hash",
+    "hash"
+  ],
+  "properties": {
+    "timestamp": { "type": "string", "format": "date-time", "description": "UTC ISO timestamp." },
+    "actor": { "type": "string", "description": "Intent actor." },
+    "action": { "type": "string", "description": "Intent action." },
+    "target": { "type": "string", "description": "Intent target." },
+    "decision": {
+      "type": "string",
+      "enum": ["ALLOW", "DENY", "ESCALATE"],
+      "description": "Policy result / decision."
+    },
+    "decision_hash": { "type": "string", "description": "Hash of the decision artifact." },
+    "previous_hash": { "type": "string", "description": "Hash of the previous ledger entry." },
+    "hash": { "type": "string", "description": "SHA256 hash of this entry payload." },
+    "metadata": { "type": "object", "description": "Optional intent metadata." }
+  },
+  "additionalProperties": false
+}

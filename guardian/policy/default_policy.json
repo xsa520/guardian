@@ -1,0 +1,6 @@
+[
+  { "actor": "*", "action": "send_email", "target": "*", "effect": "ALLOW" },
+  { "actor": "*", "action": "delete_database", "target": "*", "effect": "DENY" },
+  { "actor": "agent_finance", "action": "transfer_funds", "target": "*", "effect": "ESCALATE" },
+  { "actor": "*", "action": "deploy_service", "target": "prod_cluster", "effect": "ESCALATE" }
+]

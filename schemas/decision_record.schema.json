@@ -16,12 +16,13 @@
     },
     "policy_result": {
       "type": "string",
-      "enum": ["allow", "deny"],
-      "description": "Result of policy evaluation: allow_or_deny."
+      "enum": ["ALLOW", "DENY", "ESCALATE"],
+      "description": "Result of policy evaluation."
     },
     "decision": {
       "type": "string",
-      "description": "The decision outcome or identifier (e.g. ALLOW, DENY, ESCALATE or opaque decision id)."
+      "enum": ["ALLOW", "DENY", "ESCALATE"],
+      "description": "The decision outcome (ALLOW, DENY, ESCALATE)."
     },
     "decision_hash": {
       "type": "string",

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/guardian/execution_receipt.schema.json",
+  "title": "ExecutionReceipt",
+  "description": "Runtime evidence that execution occurred; secondary to decision artifact.",
+  "type": "object",
+  "required": ["decision_id", "actor", "action", "target", "timestamp"],
+  "properties": {
+    "decision_id": {
+      "type": "string",
+      "description": "Links to decision artifact (e.g. decision_hash) for correlation."
+    },
+    "actor": { "type": "string", "description": "Actor that executed the action." },
+    "action": { "type": "string", "description": "Action that was executed." },
+    "target": { "type": "string", "description": "Target of the action." },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When execution completed (ISO 8601)."
+    },
+    "outcome": { "type": "string", "description": "Optional outcome (e.g. success, failure)." },
+    "receipt_id": { "type": "string", "description": "Optional unique receipt identifier." },
+    "metadata": { "type": "object", "description": "Optional additional data." }
+  },
+  "additionalProperties": false
+}
