@@ -1,224 +1,60 @@
 # Guardian
 
-A verifiable governance layer for autonomous AI agents.  
-**Guardian is framework-agnostic governance infrastructure.**
-
-AI agents can now execute real-world actions —  
-writing code, running infrastructure, accessing databases,
-triggering workflows, and moving financial assets.
-
-But most agent systems still look like this:
-
-Agent → Tool → Execution
-
-This architecture is powerful — but dangerously incomplete.
-
-When something goes wrong, most systems cannot answer:
-
-• Who approved the action?  
-• What policy allowed it?  
-• Can the decision be replayed?  
-• Is there verifiable evidence?  
-
-Guardian introduces a deterministic governance layer between AI agents and execution environments.
+Guardian is an **architectural exploration** of treating governance decisions as first-class verifiable artifacts. This repository explores a model where the decision itself is recorded as an independent artifact before execution, improving auditability and enabling verification independent of runtime behavior.
 
 ---
 
-# Quick Example
+## 1. Project Overview
 
-```python
-from guardian import Guardian
+Guardian explores the idea that **governance decisions can be treated as verifiable artifacts**, independent from runtime execution. Many governance systems rely primarily on execution receipts as evidence. This repository explores a different model: the **decision artifact exists before execution** and can therefore be verified independently from runtime behavior.
 
-guardian = Guardian()
+---
 
-intent = {
-    "actor": "agent_finance",
-    "action": "transfer_funds",
-    "target": "bank_api"
-}
+## 2. Architecture Model
 
-decision = guardian.decide(intent)
+The governance pipeline is:
 
-print(decision["decision"])  # ALLOW | DENY | ESCALATE
-```
+**Intent → Policy Evaluation → Decision Artifact → Execution → Execution Receipt**
 
-Guardian evaluates the intent against policy rules before execution.
+| Stage | Role |
+|-------|------|
+| **Intent** | An action requested by an actor or agent. |
+| **Policy Evaluation** | Governance rules evaluate whether the action should be allowed. |
+| **Decision Artifact** | The evaluated decision is recorded as a verifiable artifact *before* execution. |
+| **Execution** | The runtime system performs the action. |
+| **Execution Receipt** | Runtime evidence that execution occurred. |
 
-Every decision is recorded as verifiable evidence and can be replayed for audit.
+---
 
-### Stack at a glance
+## 3. Decision Provenance
 
-```
-┌─────────────────────────────┐
-│ Application                 │
-├─────────────────────────────┤
-│ Agent Framework             │  (LangChain / CrewAI / AutoGen / custom)
-├─────────────────────────────┤
-│ Guardian Governance Layer   │  ← policy, decision, evidence
-├─────────────────────────────┤
-│ Execution Environment       │
-├─────────────────────────────┤
-│ Evidence Ledger             │  ← append-only, hash chain, replay
-└─────────────────────────────┘
-```
+Recording decisions separately from execution can improve **auditability** and **replayability**. The decision artifact captures *what was decided* at policy-evaluation time; the execution receipt captures *what actually happened* at runtime. By keeping both, systems can detect divergence between policy outcomes and runtime behavior, and can replay or verify decisions without depending solely on execution logs.
 
-## The Missing Layer
+---
 
-Modern autonomous systems need more than capability.
+## 4. Governance Model Comparison
 
-They need governance.
+| Layer | Execution-Receipt Governance | Decision-Artifact Model |
+|-------|-----------------------------|--------------------------|
+| Intent | yes | yes |
+| Policy Evaluation | yes | yes |
+| Decision Artifact | embedded | **explicit artifact** |
+| Execution | yes | yes |
+| Receipt | **primary evidence** | secondary evidence |
 
-Guardian inserts a control plane between agents and execution:
+In execution-receipt-centric models, the receipt is the main evidence. In the decision-artifact model, the explicit decision record is the primary governance artifact; the receipt serves as secondary evidence of what was executed.
 
-LLM  
- ↓  
-Agent Framework  
-(LangChain / CrewAI / AutoGen / Custom Agents)  
- ↓  
-Guardian Governance Layer  
- ↓  
-Execution Environment  
- ↓  
-Evidence Ledger  
- ↓  
-Replay / Audit
+---
 
-Every action becomes:
+## 5. Interoperability Discussion
 
-Intent → Policy → Decision → Evidence → Execution
+If multiple governance frameworks emit **compatible decision artifacts**, interoperability between systems may become possible. Shared schema and semantics for decision records could allow different runtimes and policy engines to exchange, verify, or replay each other’s decisions. This repository only explores the idea; it does not define a standard.
 
-This makes agent behavior:
+---
 
-• controllable  
-• auditable  
-• replayable  
-• safe for production systems  
+## Repository Contents
 
-## Architecture
+- **docs/** — Architecture and concept documentation.
+- **schemas/** — JSON schema for a decision artifact (`decision_record.schema.json`).
 
-Guardian acts as a governance control plane.
-
-Before any action executes:
-
-1. The agent declares intent  
-2. Guardian evaluates policy  
-3. A deterministic decision is produced  
-4. Evidence is written to a ledger  
-5. Only then does execution happen  
-
-## Core Principles
-
-Guardian is built around five ideas.
-
-**Intent** — Agents must explicitly declare the action they intend to perform.  
-
-**Policy as Code** — Behavior is controlled by declarative policies rather than hidden logic.  
-
-**Deterministic Decisions** — Guardian returns one of three outcomes: `ALLOW`, `DENY`, `ESCALATE`.  
-
-**Evidence Ledger** — Every decision is recorded as verifiable evidence.  
-
-**Replay Verification** — Decisions can be replayed and validated against policy.  
-
-## Policy Example
-
-Guardian policies are simple rule declarations.
-
-```json
-[
-  {
-    "actor": "*",
-    "action": "send_email",
-    "target": "*",
-    "effect": "ALLOW"
-  },
-  {
-    "actor": "*",
-    "action": "delete_database",
-    "target": "*",
-    "effect": "DENY"
-  },
-  {
-    "actor": "agent_finance",
-    "action": "transfer_funds",
-    "target": "*",
-    "effect": "ESCALATE"
-  }
-]
-```
-
-## Why Governance Instead of Guardrails?
-
-Most AI safety tooling focuses on guardrails.
-
-Guardrails filter model outputs.
-
-Guardian governs agent actions.
-
-Guardian introduces:
-
-• Policy-based decision control  
-• Verifiable evidence logs  
-• Deterministic replay verification  
-
-This allows autonomous systems to operate with auditability and accountability.
-
-## Example Use Cases
-
-**AI Coding Agents**  
-Prevent destructive repository changes or unsafe deployments.
-
-**Infrastructure Automation**  
-Control cloud and database operations before execution.
-
-**Financial Agents**  
-Require escalation for sensitive actions like fund transfers.
-
-**Enterprise AI Workflows**  
-Provide evidence and replayability for AI actions.
-
-## Framework Integration
-
-Guardian is framework-agnostic governance infrastructure.
-
-It can sit between any AI agent system and its execution layer, including:
-
-• LangChain  
-• CrewAI  
-• AutoGen  
-• Custom agent runtimes  
-
-This allows governance to be enforced independently of the agent framework.
-
-## Quickstart
-
-Run the examples:
-
-```bash
-python examples/demo.py
-python examples/replay_demo.py
-python examples/agent_integration_demo.py
-```
-
-Expected behavior:
-
-`send_email` → ALLOW  
-`delete_database` → DENY  
-`transfer_funds` → ESCALATE  
-
-## Status
-
-Experimental infrastructure project focused on deterministic governance for autonomous systems.
-
-## Roadmap
-
-Stage 1 — Core governance engine  
-Stage 2 — Evidence ledger and replay verification  
-Stage 3 — Policy DSL and permission model  
-Stage 4 — Developer integrations  
-Stage 5 — Hosted governance workflows  
-
-## License
-
-Apache-2.0  
-See LICENSE for details.
+See [docs/architecture.md](docs/architecture.md) for the full pipeline and [schemas/decision_record.schema.json](schemas/decision_record.schema.json) for the schema.

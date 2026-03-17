@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/guardian/decision_record.schema.json",
+  "title": "DecisionRecord",
+  "description": "Schema for a governance decision artifact recorded before execution.",
+  "type": "object",
+  "required": ["intent", "actor", "policy_result", "decision", "decision_hash", "timestamp"],
+  "properties": {
+    "intent": {
+      "type": "string",
+      "description": "The action or intent that was evaluated."
+    },
+    "actor": {
+      "type": "string",
+      "description": "The actor or agent that requested the action."
+    },
+    "policy_result": {
+      "type": "string",
+      "enum": ["allow", "deny"],
+      "description": "Result of policy evaluation: allow_or_deny."
+    },
+    "decision": {
+      "type": "string",
+      "description": "The decision outcome or identifier (e.g. ALLOW, DENY, ESCALATE or opaque decision id)."
+    },
+    "decision_hash": {
+      "type": "string",
+      "description": "Hash of the decision artifact for integrity verification."
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp when the decision was produced."
+    }
+  },
+  "additionalProperties": false
+}
