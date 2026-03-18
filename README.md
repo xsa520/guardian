@@ -90,6 +90,26 @@ Recording decisions separately from execution improves **auditability** and **re
 
 ---
 
+## Decision Artifact (v0)
+
+Guardian defines **decision artifacts** as first-class, independently verifiable objects.
+
+This is a semantic layer, not an execution format.
+
+See:
+- [docs/decision_artifact_v0.md](docs/decision_artifact_v0.md)
+
+Key invariant:
+- Decision ≠ Execution Receipt  
+- Verification must be decision-based  
+
+This boundary enables:
+- auditability  
+- replayability (for deterministic evaluations)  
+- cross-engine verification  
+
+---
+
 ## 5. Example Flow
 
 1. Caller submits **intent** (actor, action, target).
