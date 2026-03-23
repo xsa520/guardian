@@ -13,7 +13,7 @@ are identical under the same identity context.
 - Independent of transport / encoding / envelope
 - Deterministic and verifiable
 
-=======
+
 
 ## 1. Scope
 
@@ -133,4 +133,4 @@ This specification makes it explicit.
 Equivalence does not imply acceptance.
 
 Acceptance is defined in Guardian v0.3.
->>>>>>> 9e0f2ab (docs: formalize Guardian v0.2 decision equivalence spec)
+
