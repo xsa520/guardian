@@ -1,4 +1,10 @@
 # Guardian
+## Guardian v0.2 — Decision Equivalence
+
+We define decision equivalence as a verifiable invariant relation.
+
+→ Full specification:
+[guardian-v0.2-decision-equivalence.md](./specs/guardian-v0.2-decision-equivalence.md)
 
 Guardian is a **decision-governance control plane** for autonomous systems: it treats governance decisions as **first-class verifiable artifacts** that exist *before* execution and can be audited and replayed independently of runtime behavior.
 
