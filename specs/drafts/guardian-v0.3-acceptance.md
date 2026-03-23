@@ -1,6 +1,5 @@
 # Guardian v0.3 — Acceptance
-## Status
-Draft
+## Status: Draft (Non-normative, exploratory)
 
 ## Purpose
 Defines when a decision should be accepted under an authority context.
