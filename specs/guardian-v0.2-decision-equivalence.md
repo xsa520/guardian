@@ -213,9 +213,21 @@ Decision equivalence is orthogonal to all other layers.
 
 ---
 
-## 9. Design Principle
+## 9.1 Non-Substitutability Constraint
 
-> **Execution equivalence is not decision equivalence.**
+Decision identity MUST be invariant across:
+
+- representation layers (envelope / transport)
+- execution environments
+- evaluation frameworks
+
+Any system that derives decision identity from:
+
+- execution artifacts
+- structural representations
+- receipt-level data
+
+introduces non-deterministic equivalence and is therefore INVALID.
 
 ---
 
