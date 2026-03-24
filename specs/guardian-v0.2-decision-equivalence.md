@@ -213,7 +213,7 @@ Decision equivalence is orthogonal to all other layers.
 
 ---
 
-## 9.1 Non-Substitutability Constraint
+## 9. Non-Substitutability Constraint
 
 Decision identity MUST be invariant across:
 
