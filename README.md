@@ -1,189 +1,123 @@
 # Guardian
-## Guardian v0.2 — Decision Equivalence
 
-We define decision equivalence as a verifiable invariant relation.
+## Constitutional Governance Layer for Cross-Sovereign AI Systems
 
-→ Full specification:
-[guardian-v0.2-decision-equivalence.md](./specs/guardian-v0.2-decision-equivalence.md)
+Guardian defines the constitutional governance layer that preserves sovereign integrity when independently governed AI systems coordinate.
 
-Guardian is a **decision-governance control plane** for autonomous systems: it treats governance decisions as **first-class verifiable artifacts** that exist *before* execution and can be audited and replayed independently of runtime behavior.
+**Core structural gap Guardian addresses:**
 
----
+Independently governed systems can each satisfy their own admissibility and authority requirements — yet still produce decisions that remain formally non-equivalent or unreconcilable across governance boundaries.
 
-## 1. Why Guardian
-
-Modern AI agent systems need a **governance layer** between agent reasoning and real-world execution. Many systems rely mainly on **execution receipts** as evidence. Guardian explores a different model: the **decision artifact** is recorded *before* execution, so you can verify *what was allowed* independently of *what actually ran*. That improves auditability, replayability, and the ability to detect divergence between policy and runtime.
+Guardian formalizes the conditions under which this gap can be resolved without collapsing sovereign governance structures into one another.
 
 ---
 
-## 2. Core Model
+## Constitutional Property
 
-**Intent → Policy → Decision Artifact → Execution → Receipt**
+> Cross-governance comparability without cross-governance authority inheritance.
 
-| Stage | Role |
-|-------|------|
-| **Intent** | Action requested by an actor or agent. |
-| **Policy** | Governance rules evaluate whether the action is allowed (ALLOW / DENY / ESCALATE). |
-| **Decision Artifact** | The evaluated decision is recorded as a verifiable artifact *before* execution. |
-| **Execution** | The runtime performs the action (outside Guardian). |
-| **Receipt** | Runtime evidence that execution occurred (outside Guardian). |
+Equivalence determinations under Guardian carry explicit constitutional prohibitions:
 
-Guardian is responsible for **intent normalization**, **deterministic policy evaluation**, **decision artifact generation**, **append-only evidence ledger**, **replay verification**, and **decision/receipt correlation**. Guardian is **not** responsible for agent planning, tool orchestration, runtime sandboxing, actual execution, or cryptographic execution attestation.
+- Equivalence does not transfer admissibility
+- Equivalence does not transfer authority
+- Equivalence does not create inheritance obligations
+- Acceptance remains sovereign
+- Equivalence cannot launder legitimacy
 
----
-
-## 3. Where Guardian Sits
-
-**Agent Governance Architecture Map**
-
-```
-             ┌──────────────────────────────┐
-             │         Application           │
-             │  user workflows / automation  │
-             └──────────────────────────────┘
-                            │
-                            ▼
-             ┌──────────────────────────────┐
-             │       Agent Framework         │
-             │  LangChain / AutoGen / etc.   │
-             │ planning, reasoning, tools    │
-             └──────────────────────────────┘
-                            │
-                            ▼
-    ┌────────────────────────────────────────────┐
-    │     Governance Control Plane (Guardian)     │
-    │                                              │
-    │  Intent → Policy → Decision → Evidence       │
-    │  deterministic policy evaluation             │
-    │  decision artifacts                          │
-    │  tamper-evident decision ledger              │
-    │  replay verification                         │
-    └────────────────────────────────────────────┘
-                            │
-                            ▼
-       ┌────────────────────────────────────┐
-       │       Runtime Enforcement Layer     │
-       │  policy enforcement, gating, audit │
-       └────────────────────────────────────┘
-                            │
-                            ▼
-    ┌────────────────────────────────────────────┐
-    │       Execution Environment / Tools         │
-    └────────────────────────────────────────────┘
-                            │
-                            ▼
-       ┌────────────────────────────────────┐
-       │  Cryptographic Execution Receipts  │
-       └────────────────────────────────────┘
-```
-
-**Governance models**
-
-| Layer | Question |
-|-------|----------|
-| Agent Framework | What does the agent want to do? |
-| Governance Control Plane | Why was a decision allowed? |
-| Runtime Enforcement | Can this action execute right now? |
-| Execution Receipts | What actually happened during execution? |
-
-Guardian focuses on the **decision governance layer**.
+See: [specs/guardian-v0.2-decision-equivalence.md](./specs/guardian-v0.2-decision-equivalence.md) — Section 10
 
 ---
 
-## 4. Why Decision Provenance Matters
+## Specification Layers
 
-Recording decisions separately from execution improves **auditability** and **replayability**. The decision artifact captures *what was decided* at policy-evaluation time; the execution receipt captures *what actually happened* at runtime. By keeping both, systems can detect divergence between policy and runtime and can replay or verify decisions without depending solely on execution logs. See [docs/decision_provenance.md](docs/decision_provenance.md).
+### V0.2 — Decision Equivalence
 
----
+Defines decision identity and the invariant boundary that determines canonical equivalence across independently governed systems.
 
-## Decision Artifact (v0)
+→ [specs/guardian-v0.2-decision-equivalence.md](./specs/guardian-v0.2-decision-equivalence.md)
 
-Guardian defines **decision artifacts** as first-class, independently verifiable objects.
+### V0.3-mini — Acceptance Minimal Invariant
 
-This is a semantic layer, not an execution format.
+Defines the minimal deterministic conditions under which a decision is accepted within or across governance domains.
 
-See:
-- [docs/decision_artifact_v0.md](docs/decision_artifact_v0.md)
+> Equivalence does not imply acceptance.
 
-Key invariant:
-- Decision ≠ Execution Receipt  
-- Verification must be decision-based  
-
-This boundary enables:
-- auditability  
-- replayability (for deterministic evaluations)  
-- cross-engine verification  
+→ [specs/guardian-v0.3-mini-acceptance.md](./specs/guardian-v0.3-mini-acceptance.md)
 
 ---
 
-## 5. Example Flow
+## Core Model
 
-1. Caller submits **intent** (actor, action, target).
-2. Guardian evaluates **policy** (ALLOW / DENY / ESCALATE; default DENY; wildcards).
-3. Guardian produces a **DecisionRecord** (with `decision_hash`, timestamp) and appends it to the **ledger**.
-4. Caller (or runtime enforcement) decides whether to execute; execution and **receipt** are outside Guardian.
-5. Optional: **Replay** verifier re-evaluates ledger entries; **receipt correlation** verifier compares receipts to decision records.
+**Intent → Policy → Decision → Evidence**
 
-See [docs/example_decision_flow.md](docs/example_decision_flow.md).
+| Layer | Responsibility |
+|-------|----------------|
+| Decision Identity | What makes a decision canonically itself |
+| Decision Equivalence | When two decisions are formally the same |
+| Acceptance | Under what authority context a decision is valid |
+| Constitutional Prohibitions | What equivalence is permanently prohibited from becoming |
 
 ---
 
-## 6. Repository Structure
+## The Problem Guardian Solves
 
-```
+Current AI governance frameworks address:
+
+- Identity (who is authorized)
+- Execution receipts (what happened)
+- Compliance (did the system follow its rules)
+
+What remains undefined:
+
+> When independently governed systems each produce a valid decision, what determines whether those decisions are equivalent — and which should be accepted when governance boundaries interact?
+
+Without decision equivalence, cross-system governance remains in its adjectival phase: “interoperable,” “coordinated,” “aligned” — without the structural basis to verify what those adjectives mean when sovereign boundaries interact.
+
+---
+
+## Empirical Implementation
+
+Guardian’s constitutional architecture has been operationalized in a live governance environment since 2026-02-11.
+
+### Four-layer governance stack:
+
+| Layer | Guardian Mapping |
+|-------|------------------|
+| Decision Layer | V0.2 Decision Equivalence |
+| Acceptance Layer | V0.3 Acceptance |
+| Execution Layer | Runtime governance bridge |
+| Lifecycle Layer | V0.4+ Behavioral Governance |
+
+**Evidence anchoring:** RFC3161 (DigiCert)  
+**Audit chain:** Append-only, hash-verified
+
+See: [guardian_layers/](./guardian_layers/)
+
+---
+
+## Repository Structure
+
+```txt
 guardian/
-  guardian/           # Single canonical package
-    models/           # Intent, PolicyRule, DecisionRecord, ExecutionReceipt
-    policy/           # Policy loader and deterministic engine
-    decision/         # Decision engine (artifact before execution)
-    ledger/           # Append-only hash-chained evidence ledger
-    verification/     # Replay verifier, receipt correlation verifier
-    integrations/     # Integration points (stubs)
-    api.py            # Guardian facade
-    config.py         # Configuration
-  docs/               # Architecture and concepts
-  schemas/            # JSON schemas
-  examples/           # Example scripts
-  tests/              # Tests
-```
+├── specs/               # Formal specifications
+│   ├── guardian-v0.2-decision-equivalence.md
+│   └── guardian-v0.3-mini-acceptance.md
+├── drafts/              # In-development specifications
+├── guardian_layers/     # Empirical implementation mapping
+├── docs/                # Architecture and conceptual documents
+├── guardian/            # Reference implementation
+├── schemas/             # JSON schemas
+├── examples/            # Example scripts
+└── tests/               # Validation and test suites
 
 ---
 
-## 7. Schema
+## Reference Implementation
 
-| Schema | Description |
-|--------|-------------|
-| [intent.schema.json](schemas/intent.schema.json) | Intent (actor, action, target, optional metadata). |
-| [policy.schema.json](schemas/policy.schema.json) | Policy rules (actor, action, target, effect). |
-| [decision_record.schema.json](schemas/decision_record.schema.json) | Decision artifact. |
-| [execution_receipt.schema.json](schemas/execution_receipt.schema.json) | Execution receipt (secondary evidence). |
-| [evidence_log_entry.schema.json](schemas/evidence_log_entry.schema.json) | Single ledger entry with hash chain. |
+→ [Decifact](https://decifact.com) — Decision verification for 
+governed AI systems
 
 ---
-
-## 8. Interoperability
-
-If multiple governance frameworks emit **compatible decision artifacts**, interoperability may become possible: shared schema and semantics allow exchange, verification, and replay across systems. **Guardian does not attempt to define a governance standard.** This repository explores the idea only. See [docs/interoperability.md](docs/interoperability.md).
-
----
-
-## 9. Boundaries
-
-Guardian is a **decision-governance control plane only**. It does not do agent planning, tool orchestration, runtime sandboxing, actual execution, or cryptographic execution attestation. See [docs/boundaries.md](docs/boundaries.md).
-
----
-
-## Quick Start
-
-```bash
-# From repo root (install in dev mode or set PYTHONPATH)
-pip install -e .
-# Or: set PYTHONPATH to repo root
-
-python examples/email_send_allowed.py
-python examples/replay_demo.py
-pytest tests/
-```
 
 ## License
 
