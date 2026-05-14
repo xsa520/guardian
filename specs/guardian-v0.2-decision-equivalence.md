@@ -231,7 +231,46 @@ introduces non-deterministic equivalence and is therefore INVALID.
 
 ---
 
-## 10. Consequence
+## 10. Constitutional Prohibitions
+
+Equivalence determinations under this specification 
+carry the following explicit prohibitions:
+
+### 10.1 Equivalence Does Not Transfer Admissibility
+
+A decision recognized as equivalent across governance 
+boundaries does not inherit the admissibility conditions 
+of the originating system. Admissibility must be 
+independently resolved within each governance context.
+
+### 10.2 Equivalence Does Not Transfer Authority
+
+Canonical comparability does not confer governance 
+authority from one sovereign domain to another. 
+Equivalence is a determination, not an authority 
+transfer mechanism.
+
+### 10.3 Equivalence Does Not Create Inheritance Obligations
+
+Recognition of equivalence does not bind downstream 
+systems to accept the originating decision's consequence 
+conditions.
+
+### 10.4 Acceptance Remains Sovereign
+
+Admissibility determination must be independently 
+re-resolved at each governance boundary, regardless 
+of established equivalence.
+
+### 10.5 Equivalence Cannot Launder Legitimacy
+
+Equivalence recognition must not be used as a mechanism 
+to import governance legitimacy across sovereign boundaries 
+without independent admissibility resolution.
+
+---
+
+## 11. Consequence
 
 Any system lacking explicit decision equivalence:
 
@@ -241,7 +280,7 @@ Any system lacking explicit decision equivalence:
 
 ---
 
-## 11. Summary
+## 12. Summary
 
 This specification establishes:
 
