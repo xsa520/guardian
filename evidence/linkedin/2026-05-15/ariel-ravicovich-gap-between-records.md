@@ -8,4 +8,4 @@ And no current framework has a clear answer for who holds
 the reconciliation."
 
 Thread: Arthur Sidney AI governance article
-Date: 2026-05-15
+Date: 2026-05-16
