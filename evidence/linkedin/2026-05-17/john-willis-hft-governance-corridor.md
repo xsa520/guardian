@@ -33,4 +33,22 @@ each establish their own bind-time admissibility layer, whether
 state transitions remain formally comparable across governance
 boundaries.
 
+## Confirmation
+
+Bruno Baumgartner replied directly to De Yu Chou:
+
+"For me, admissible execution answers whether one system
+was allowed to bind a transition.
+
+Decision equivalence goes one level further: whether
+independently governed systems can still compare,
+reconcile, and accept each other's allowed transitions
+across governance boundaries.
+
+That may become essential once autonomous systems
+interact under different rule sets."
+
+Status: CONFIRMED — Bruno independently articulated
+Guardian V0.2 → V0.3 progression without prompting.
+
 Date: 2026-05-17
