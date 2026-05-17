@@ -45,4 +45,21 @@ across governance boundaries.
 Strong signal — pending confirmation
 Monitor for explicit attribution or further alignment.
 
+## Confirmation
+
+Ricky Jones replied directly to De Yu Chou:
+
+"That split is the load-bearing seam."
+
+"The control behaves correctly. The thing it is
+controlling was never operationally grounded.
+That is where the accountability gap starts to
+appear — not in the enforcement layer itself,
+but one layer upstream of it."
+
+"Glad you surfaced it this cleanly."
+
+Status: CONFIRMED — explicit attribution by name.
+「recent external challenge」已確認指向 Guardian framing。
+
 Date: 2026-05-17
