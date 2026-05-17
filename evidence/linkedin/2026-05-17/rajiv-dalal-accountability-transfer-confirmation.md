@@ -35,7 +35,8 @@ Rajiv independently articulated:
 
 Guardian V0.2: decision equivalence across boundaries
 Guardian V0.3: acceptance under different governance regimes
-Guardian position: the mechanism Rajiv says does not yet exist
+Guardian position: formalizing the missing cross-boundary
+mechanism Rajiv identifies
 
 ## Status
 
