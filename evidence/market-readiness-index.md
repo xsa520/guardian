@@ -37,13 +37,15 @@ Updated: 2026-05-17
 
 ## Commercial Readiness Layers
 
-| Layer | Status |
-|-------|--------|
-| Spec (V0.2, V0.3-mini) | Public |
-| Reference implementation (Decifact) | Early Access |
-| Verifier SaaS | Not yet deployed |
-| Certification framework | Not yet defined |
-| Advisory / consulting | Available |
+| Layer | Status | Notes |
+|-------|--------|-------|
+| Spec Stack (V0.2–V0.4 candidate) | Public / Candidate | V0.2 + V0.3-mini public, V0.4 in development |
+| Reference implementation (Decifact) | Early Access | decifact.com |
+| Decision Verifier | Not yet deployed | V0.2 equivalence attestation |
+| Acceptance Verifier | Not yet deployed | V0.3 cross-system validity |
+| Governance Memory Verifier | Emerging | V0.4 candidate — replay integrity |
+| Certification framework | Not yet defined | Future standards layer |
+| Advisory / consulting | Available | |
 
 ---
 
