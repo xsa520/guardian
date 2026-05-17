@@ -5,7 +5,7 @@
 Tracking external signals that indicate Guardian is approaching 
 standard formation and commercial deployment readiness.
 
-Updated: 2026-05-16
+Updated: 2026-05-17
 
 ---
 
@@ -14,13 +14,14 @@ Updated: 2026-05-16
 | Indicator | Status | Notes |
 |-----------|--------|-------|
 | External citations of Guardian | 0 formal | Private acknowledgments only |
-| Governance corridor actors | 9 | Mohamed, Danilo, Ulrike, Janis, Gaia, Ariel, John, Philip, Ergosphere |
-| Runtime governance actors | 3 | Philip Pinol, Dan Evans, John Milne |
-| Interoperability actors | 2 | John Milne, Janis K. |
 | Acceptance trigger | Pending | No public cross-system conflict yet |
 | Enterprise deployment signals | 1 | Alpha System live since 2026-02-11 |
 | Sovereign validation | 1 | Mohamed Rihan (spec review pending) |
 | Standard maturity | L7-alpha | Pre-standard positioning |
+| Governance corridor actors | 13 | Mohamed, Ariel, Philip, John, Danilo, Ulrike, Janis, Gaia, Demarius, Ricky, Kamilla, Thomas, Ruslan |
+| Runtime governance actors | 5 | Philip, John, Kamilla, Ricky, Thomas |
+| Interoperability actors | 3 | John Milne, Janis K., Ricky Jones |
+| Standard maturity | L7-alpha | 8 external layers independently defined |
 
 ---
 
@@ -53,3 +54,15 @@ Update this index when:
 - Mohamed spec review received
 - First external citation occurs
 - Enterprise inquiry received
+
+---
+
+## Spec Maturity
+
+| Version | Status | External Validation |
+|---------|--------|-------------------|
+| V0.2 | Public | Mohamed, Ariel, multiple corridor actors |
+| V0.3-mini | Public | Acceptance layer, cross-system |
+| V0.4 | Candidate | Governance Memory Integrity — derived from Ricky Jones, Robert Schneider, Elena Bobkova, Demarius Lawson |
+
+Last updated: 2026-05-17
