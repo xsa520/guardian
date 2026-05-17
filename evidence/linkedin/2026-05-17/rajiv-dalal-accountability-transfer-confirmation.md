@@ -29,9 +29,7 @@ Rajiv independently articulated:
 2. The acceptance and defensibility layer
 3. The absence of a formal mechanism
 
-"There is no clear mechanism for that" is a precise
-external statement of the problem Guardian V0.2 and
-V0.3 attempt to formalize.
+"There is no clear mechanism for that" is a precise external articulation of the structural gap Guardian V0.2 and V0.3 are designed to formalize.
 
 ## Guardian Relevance
 
