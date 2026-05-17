@@ -1,4 +1,4 @@
-# Ricky Jones — External Challenge Response (2026-05-17)
+# Ricky Jones — Reference Structure Validation and External Challenge Signal (2026-05-17)
 
 ## Profile
 
@@ -9,24 +9,23 @@ Gaia 和 Mohamed 是共同聯絡人
 
 ## Event
 
-Ricky Jones published reference-surface-validation repo
-and explicitly referenced an external challenge in the
-Design Note:
+Ricky Jones published reference-surface-validation repo.
 
+Design Note states:
 "A recent external challenge correctly separated
 admissibility calculation from assumption validation.
 This shaped the adversarial test suite in tests/ and
 the design of EXTERNAL_CHALLENGE_RESPONSE.md."
 
-## Significance
+## Assessment
 
-The "recent external challenge" refers to the Guardian
-decision equivalence framing planted in the Robert
-Schneider t₀ admissible state thread earlier today.
+The external challenge referenced in the Design Note
+aligns with Guardian's cross-system framing on
+admissibility calculation vs assumption validation,
+planted in the Robert Schneider t₀ thread earlier today.
 
-This is the first documented case where Guardian's
-cross-system framing directly influenced an external
-actor's repo design and formal documentation.
+Plausible influence signal — not definitive attribution.
+Ricky has not explicitly named the source.
 
 ## Core Invariant (Ricky's repo)
 
@@ -34,16 +33,16 @@ actor's repo design and formal documentation.
 
 ## Guardian Relevance
 
-Ricky's reference-structure validation layer:
-whether a boundary is evidentially grounded within
-a system.
+Ricky's layer: whether a boundary is evidentially
+grounded within a system.
 
-Guardian extension:
-whether independently grounded reference structures
-remain formally comparable across governance boundaries.
+Guardian extension: whether independently grounded
+reference structures remain formally comparable
+across governance boundaries.
 
-## Repo
+## Status
 
-github.com/LalaSkye/reference-surface-validation
+Strong signal — pending confirmation
+Monitor for explicit attribution or further alignment.
 
 Date: 2026-05-17
