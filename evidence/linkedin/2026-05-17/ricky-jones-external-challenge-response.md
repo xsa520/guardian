@@ -24,8 +24,10 @@ aligns with Guardian's cross-system framing on
 admissibility calculation vs assumption validation,
 planted in the Robert Schneider t₀ thread earlier today.
 
-Plausible influence signal — not definitive attribution.
-Ricky has not explicitly named the source.
+Strong public alignment signal with direct semantic
+reinforcement. Design Note attribution remains indirect,
+but Ricky's named public response explicitly confirms
+structural convergence with Guardian-adjacent framing.
 
 ## Core Invariant (Ricky's repo)
 
@@ -42,8 +44,11 @@ across governance boundaries.
 
 ## Status
 
-Strong signal — pending confirmation
-Monitor for explicit attribution or further alignment.
+Confirmed semantic validation. Direct public
+acknowledgment by Ricky Jones establishes explicit
+external reinforcement of governance seam framing.
+Design Note attribution remains partially indirect,
+but structural adoption is confirmed.
 
 ## Confirmation
 
@@ -60,6 +65,8 @@ but one layer upstream of it."
 "Glad you surfaced it this cleanly."
 
 Status: CONFIRMED — explicit attribution by name.
-「recent external challenge」已確認指向 Guardian framing。
+「recent external challenge」plausibly aligns with
+Guardian-adjacent public challenge; direct semantic
+convergence publicly confirmed.
 
 Date: 2026-05-17
