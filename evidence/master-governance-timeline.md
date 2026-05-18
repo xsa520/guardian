@@ -25,6 +25,8 @@ as an emerging cross-system AI governance standard.
 | 2026-05-16 | Ricky Jones | Execution Boundary | "A receipt is where the sentence has to survive contact with the system" — Gaia + Mohamed 共同聯絡人 |
 | 2026-05-17 | Kamilla Harcej | Deterministic Execution | IFA Framework — Mohamed + Justin 共同聯絡人 |
 | 2026-05-17 | Thomas Gessler | Declarative Bridge | "defining what may become real" — declarative governance → equivalence bridge |
+| 2026-05-18 | Mohamed Rihan | Constitutional | Public anti-normalization validation + V0.2 spec review committed |
+| 2026-05-18 | Ricky Jones | Decision Identity | "decision identity remaining comparable across systems caught my attention" |
 
 ---
 
@@ -37,7 +39,7 @@ Governance corridor actors: 13
 Gaia, Demarius, Ricky Jones, Kamilla, Thomas Gessler, Ruslan)
 
 Remaining for L7:
-- Mohamed constitutional spec review closure
+- Mohamed spec review in progress (committed 2026-05-18)
 - External explicit citation of Guardian
 - Acceptance conflict in production environment
 - Public forced reconciliation event
