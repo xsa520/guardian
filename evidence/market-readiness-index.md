@@ -5,7 +5,7 @@
 Tracking external signals that indicate Guardian is approaching 
 standard formation and commercial deployment readiness.
 
-Updated: 2026-05-17
+Updated: 2026-05-18
 
 ---
 
@@ -16,7 +16,7 @@ Updated: 2026-05-17
 | External citations of Guardian | 0 formal | Private acknowledgments only |
 | Acceptance trigger | Pending | No public cross-system conflict yet |
 | Enterprise deployment signals | 1 | Alpha System live since 2026-02-11 |
-| Sovereign validation | 1 | Mohamed Rihan (spec review pending) |
+| Sovereign validation | 1 | Mohamed Rihan (spec review committed 2026-05-18) |
 | Standard maturity | L7-alpha | Pre-standard positioning |
 | Governance corridor actors | 13 | Mohamed, Ariel, Philip, John, Danilo, Ulrike, Janis, Gaia, Demarius, Ricky, Kamilla, Thomas, Ruslan |
 | Runtime governance actors | 5 | Philip, John, Kamilla, Ricky, Thomas |
@@ -67,4 +67,4 @@ Update this index when:
 | V0.3-mini | Public | Acceptance layer, cross-system |
 | V0.4 | Candidate | Governance Memory Integrity — derived from Ricky Jones, Robert Schneider, Elena Bobkova, Demarius Lawson |
 
-Last updated: 2026-05-17
+Last updated: 2026-05-18
