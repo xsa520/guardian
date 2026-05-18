@@ -44,6 +44,14 @@ Defines the minimal deterministic conditions under which a decision is accepted 
 
 → [specs/guardian-v0.3-mini-acceptance.md](./specs/guardian-v0.3-mini-acceptance.md)
 
+### V0.3 — Acceptance
+
+Defines cross-system acceptance, authority translation, and governance-valid interoperability. Formalizes sovereign discontinuity rights and constitutional anti-normalization boundaries.
+
+> Persistent interoperability does not constitute implicit acceptance.
+
+→ [specs/guardian-v0.3-acceptance.md](./specs/guardian-v0.3-acceptance.md)
+
 ---
 
 ## Core Model
@@ -101,7 +109,9 @@ See: [guardian_layers/](./guardian_layers/)
 guardian/
 ├── specs/               # Formal specifications
 │   ├── guardian-v0.2-decision-equivalence.md
-│   └── guardian-v0.3-mini-acceptance.md
+│   ├── guardian-v0.3-mini-acceptance.md
+│   ├── guardian-v0.3-acceptance.md
+│   └── guardian-v0.4-candidate.md
 ├── drafts/              # In-development specifications
 ├── guardian_layers/     # Empirical implementation mapping
 ├── docs/                # Architecture and conceptual documents
