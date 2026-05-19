@@ -124,8 +124,9 @@ guardian/
 
 ## Reference Implementation
 
-→ [Decifact](https://decifact.com) — Decision verification for 
-governed AI systems
+→ [Decifact](https://decifact.com) — Decision verification for governed AI systems
+
+→ [xsa520/decifact](https://github.com/xsa520/decifact) — Source code
 
 ---
 
