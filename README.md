@@ -119,6 +119,7 @@ guardian/
 ├── schemas/             # JSON schemas
 ├── examples/            # Example scripts
 └── tests/               # Validation and test suites
+```
 
 ---
 
