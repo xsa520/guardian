@@ -1,5 +1,20 @@
 # Ecosystem Positioning
 
+> **Historical positioning note**
+>
+> This document reflects Guardian's March 2026 positioning as a
+> decision-governance control plane for a single runtime.
+>
+> Guardian's current research positioning has since narrowed and
+> changed: Guardian is a research constitution and specification
+> framework for cross-system comparison determination. It does not
+> itself grant reliance authority, authorize execution, or govern
+> runtime continuation.
+>
+> The runtime-control-plane material below is retained as historical
+> reference and should not be treated as the current repository-level
+> architecture.
+
 Guardian occupies one layer in a broader agent governance stack. This document clarifies where Guardian sits relative to other concerns.
 
 ## Stack Layers
