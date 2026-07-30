@@ -8,7 +8,23 @@ Guardian defines the constitutional governance layer that preserves sovereign in
 
 Independently governed systems can each satisfy their own admissibility and authority requirements — yet still produce decisions that remain formally non-equivalent or unreconcilable across governance boundaries.
 
-Guardian formalizes the conditions under which this gap can be resolved without collapsing sovereign governance structures into one another.
+Guardian formalizes the conditions under which this gap can be evaluated as equivalence, non-equivalence, or formal incomparability without collapsing sovereign governance structures into one another.
+
+### Where Guardian Fits in the Governance Chain
+
+Cross-system coordination involves several distinct governance questions:
+
+1. **Referent continuity** — do the judgments still concern the same governed object?
+2. **Governing-basis currency** — are the relevant definitions, authority conditions, evidence thresholds, and time states still current?
+3. **Comparison determination** — do the judgments share a valid comparison basis, and if so, are they equivalent or non-equivalent?
+4. **Reliance authority** — may a receiving party rely on the comparison result for a particular purpose?
+5. **Execution admissibility** — may the resulting action proceed under current conditions?
+6. **Runtime continuity** — do the governing conditions remain valid as execution continues?
+7. **Evidence reconciliation** — were all required evaluations completed and preserved as reviewable evidence?
+
+Guardian is a research constitution and specification framework primarily concerned with Layer 3 — comparison determination — and the constitutional prohibitions that govern it. It requires the relevant comparison inputs from Layers 1 and 2 to be represented. It does not itself establish ongoing authority, authorize reliance, determine execution admissibility, govern runtime continuation, or discharge downstream evidentiary obligations — those remain separate governance layers, each with its own responsible party.
+
+A Guardian-governed equivalence determination describes a relationship between judgments. It does not authorize what any system should do with that determination.
 
 ---
 
@@ -46,9 +62,11 @@ Defines the minimal deterministic conditions under which a decision is accepted 
 
 ### V0.3 — Acceptance
 
-Defines cross-system acceptance, authority translation, and governance-valid interoperability. Formalizes sovereign discontinuity rights and constitutional anti-normalization boundaries.
+Examines the constitutional conditions and prohibitions surrounding cross-domain acceptance — sovereign discontinuity rights and anti-normalization boundaries.
 
 > Persistent interoperability does not constitute implicit acceptance.
+
+It does not itself grant reliance authority, authorize execution, or transfer authority between governance domains. Defining acceptance conditions is not the same as performing acceptance, which remains a decision for the receiving governance domain.
 
 → [specs/guardian-v0.3-acceptance.md](./specs/guardian-v0.3-acceptance.md)
 
@@ -61,7 +79,7 @@ Defines cross-system acceptance, authority translation, and governance-valid int
 | Layer | Responsibility |
 |-------|----------------|
 | Decision Identity | What makes a decision canonically itself |
-| Decision Equivalence | When two decisions are formally the same |
+| Decision Equivalence | Whether judgments share a valid comparison basis and how equivalence, non-equivalence, or formal incomparability is represented |
 | Acceptance | Under what authority context a decision is valid |
 | Constitutional Prohibitions | What equivalence is permanently prohibited from becoming |
 
@@ -77,29 +95,31 @@ Current AI governance frameworks address:
 
 What remains undefined:
 
-> When independently governed systems each produce a valid decision, what determines whether those decisions are equivalent — and which should be accepted when governance boundaries interact?
+> When independently governed systems produce judgments under different governing sources, what determines whether those judgments share a valid comparison basis — and how should equivalence, non-equivalence, or formal incomparability be represented without transferring authority between them?
 
 Without decision equivalence, cross-system governance remains in its adjectival phase: “interoperable,” “coordinated,” “aligned” — without the structural basis to verify what those adjectives mean when sovereign boundaries interact.
 
 ---
 
-## Empirical Implementation
+## Empirical Foundation
 
-Guardian’s constitutional architecture has been operationalized in a live governance environment since 2026-02-11.
+Guardian concepts have been exercised since 2026-02-11
+through controlled internal governance experiments and
+reference implementations.
 
-### Four-layer governance stack:
-
-| Layer | Guardian Mapping |
-|-------|------------------|
-| Decision Layer | V0.2 Decision Equivalence |
-| Acceptance Layer | V0.3 Acceptance |
-| Execution Layer | Runtime governance bridge |
-| Lifecycle Layer | V0.4+ Behavioral Governance |
+These experiments inform the specification. They do not constitute
+external production certification, nor proof that all governance
+layers described in the seven-layer chain above are operationalized.
+Guardian's own specifications (V0.2, V0.3-mini, V0.3) concentrate on
+Layer 3 and the constitutional prohibitions surrounding Layer 4;
+Layers 1, 2, and 5–7 remain research relationships informed by, but
+not established by, this work.
 
 **Evidence anchoring:** RFC3161 (DigiCert)  
 **Audit chain:** Append-only, hash-verified
 
-See: [guardian_layers/](./guardian_layers/)
+See: [guardian_layers/](./guardian_layers/) for the research
+relationships informing this specification.
 
 ---
 
@@ -125,7 +145,16 @@ guardian/
 
 ## Reference Implementation
 
-→ [Decifact](https://decifact.com) — Decision verification for governed AI systems
+Decifact is the reference implementation of the comparison layer
+(Layer 3): it determines whether independently governed judgments
+share a valid comparison basis, and classifies them as equivalent,
+non-equivalent, or formally incomparable.
+
+It does not grant reliance authority, authorize execution, or
+govern runtime continuation. Those remain separate governance
+responsibilities (Layers 4–7 above).
+
+→ [Decifact](https://decifact.com) — comparison-layer reference implementation
 
 → [xsa520/decifact](https://github.com/xsa520/decifact) — Source code
 
