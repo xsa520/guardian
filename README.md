@@ -118,28 +118,38 @@ not established by, this work.
 **Evidence anchoring:** RFC3161 (DigiCert)  
 **Audit chain:** Append-only, hash-verified
 
-See: [guardian_layers/](./guardian_layers/) for the research
-relationships informing this specification.
-
 ---
 
 ## Repository Structure
 
 ```txt
 guardian/
-├── specs/               # Formal specifications
+├── specs/               # Formal and candidate specifications
 │   ├── guardian-v0.2-decision-equivalence.md
 │   ├── guardian-v0.3-mini-acceptance.md
 │   ├── guardian-v0.3-acceptance.md
 │   └── guardian-v0.4-candidate.md
-├── drafts/              # In-development specifications
-├── guardian_layers/     # Empirical implementation mapping
 ├── docs/                # Architecture and conceptual documents
-├── guardian/            # Reference implementation
-├── schemas/             # JSON schemas
-├── examples/            # Example scripts
-└── tests/               # Validation and test suites
+├── guardian/            # Historical runtime-authorization prototype
+├── policies/            # Prototype policy definitions
+├── schemas/             # Prototype and evidence schemas
+├── examples/            # Historical runtime examples
+└── tests/               # Prototype validation tests
 ```
+
+### Implementation-status note
+
+The executable Python package currently preserved in `guardian/`
+implements Guardian's earlier single-runtime authorization prototype:
+intent and policy evaluation resulting in ALLOW, DENY, or ESCALATE.
+
+It does not implement the current cross-system comparison semantics
+defined by the Guardian specifications. The comparison-layer reference
+implementation is Decifact.
+
+The prototype remains in this repository as implementation history
+pending a separate decision on archival, extraction, or long-term
+repositioning.
 
 ---
 
