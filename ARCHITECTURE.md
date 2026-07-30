@@ -1,5 +1,20 @@
 # Architecture
 
+> **Historical reference-implementation architecture**
+>
+> This document describes Guardian's early runtime authorization
+> prototype: a single-system intent → policy → ALLOW / DENY /
+> ESCALATE flow implemented before the repository's later
+> cross-system comparison specifications.
+>
+> It is preserved as implementation history and does not define the
+> current Guardian research constitution or the comparison semantics
+> described in the repository README and `specs/`.
+>
+> The runtime prototype does not implement cross-system equivalence,
+> non-equivalence, or formal incomparability. Current comparison-layer
+> implementation work is maintained separately in Decifact.
+
 This document describes Guardian's system design, governance pipeline, core components, and design principles.
 
 ## System Flow
@@ -58,5 +73,5 @@ Execution (only if permitted by policy and decision)
 - **Deterministic decisions** — Same intent and policy always yield the same decision. No hidden state in the decision path.
 - **Policy as code** — Behavior is controlled by declared rules (e.g. JSON), not hardcoded branches.
 - **Evidence by default** — Every decision is recorded. The ledger is append-only and hash-chained for integrity.
-- **Replayability** — Decisions can be replayed and validated against current policy to detect drift or tampering.
+- **Replayability** — Decisions can be replayed against the policy version recorded at decision time to test historical reproducibility. Re-evaluation under a current policy is a separate drift analysis and must not overwrite or reinterpret the historical decision.
 - **Explicit escalation** — ESCALATE supports workflows that require human or enterprise approval before execution.
