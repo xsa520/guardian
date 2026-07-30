@@ -1,5 +1,20 @@
 # Guardian Boundaries
 
+> **Historical scope note**
+>
+> This document describes the boundaries of Guardian's early
+> single-runtime authorization prototype. Its references to policy
+> evaluation, permission decisions, and execution control should not
+> be read as the current scope of the Guardian research constitution.
+>
+> The current Guardian scope is cross-system comparison determination:
+> whether independently governed judgments share a valid comparison
+> basis and how equivalence, non-equivalence, or formal
+> incomparability is represented without transferring authority.
+>
+> This historical prototype remains relevant as an execution-governance
+> example, but it is not itself a cross-system comparison engine.
+
 Guardian is a **decision-governance control plane**, not an agent framework or execution runtime. This document states what Guardian is and is not responsible for.
 
 ## Guardian Is Responsible For
