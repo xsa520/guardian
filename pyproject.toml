@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "guardian-ai"
 version = "0.1.0"
-description = "Governance infrastructure layer for autonomous agents"
+description = "Historical runtime-authorization prototype preserved within the Guardian research repository"
 readme = "README.md"
 requires-python = ">=3.10"
 
