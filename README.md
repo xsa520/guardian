@@ -26,6 +26,16 @@ Guardian is a research constitution and specification framework primarily concer
 
 A Guardian-governed equivalence determination describes a relationship between judgments. It does not authorize what any system should do with that determination.
 
+### Pre-comparability readiness
+
+Before Layer 3 comparison determination, each originating judgment must be sufficiently constituted and reconstructable to be a legitimate comparison candidate. Decifact may define and implement bounded readiness/admission states for this purpose. These states do not alter Guardian's Layer 3 responsibility and do not constitute comparison outcomes.
+
+Readiness/admission != comparison determination.
+
+An input held before comparison has not been classified as equivalent, non-equivalent, or formally incomparable.
+
+Guardian requires comparison inputs to be sufficiently constituted for Layer 3 comparison, but the constitution/readiness state machine belongs to the Decifact reference implementation boundary, not to Guardian's constitutional layer.
+
 ---
 
 ## Constitutional Property
